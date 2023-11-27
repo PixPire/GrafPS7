@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 import java.awt.geom.Line2D;
 import java.io.*;
 import java.util.ArrayList;
@@ -80,16 +78,27 @@ public class MainFrame extends JFrame {
                             secondClick=true;
                         }
                     }else if(secondClick){
-                        selectedPoint=new Point(e.getX(), e.getY());
+                        theOtherWay=false;
+                        selectedPoint=new Point(e.getX(), e.getY()-heightDiff+30);
+                        canvasPanel.setSelectedPoint(selectedPoint);
                         secondClick=false;
                         thirdClick=true;
                         System.out.println("Ustalono Punkt");
+                        canvasPanel.setFigureSet(figuresList);
+                        canvasPanel.repaint();
+
+                    }else if(thirdClick){
+                        theOtherWay=true;
+                        thirdClick=false;
 
                     }else{
-                        thirdClick=false;
+                        theOtherWay=false;
                         firstClick=true;
                         selectedFigure=null;
                         selectedPoint=null;
+                        canvasPanel.setSelectedPoint(selectedPoint);
+                        canvasPanel.setFigureSet(figuresList);
+                        canvasPanel.repaint();
                     }
 
 
@@ -209,15 +218,23 @@ public class MainFrame extends JFrame {
 
         JButton scaleButton = new JButton("Skalowanie względem punktu");
         JTextField scaleNumberField = new JTextField("1");
+        JTextField scaleX = new JTextField("50");
+        JTextField scaleY = new JTextField("50");
         JTextField scalePointXField = new JTextField("100");
         JTextField scalePointYField = new JTextField("100");
         scaleNumberField.setMaximumSize(dimension);
+        scaleX.setMaximumSize(dimension);
+        scaleY.setMaximumSize(dimension);
         scalePointXField.setMaximumSize(dimension);
         scalePointYField.setMaximumSize(dimension);
         toolBar.add(scaleButton);
         toolBar.add(scaleNumberField);
+        toolBar.add(scaleX);
+        toolBar.add(scaleY);
         toolBar.add(scalePointXField);
         toolBar.add(scalePointYField);
+
+        scaleButton.addActionListener(e->SetFigureScale(Integer.parseInt((scaleNumberField.getText())),Integer.parseInt(scaleX.getText()),Integer.parseInt(scaleY.getText()), Integer.parseInt(scalePointXField.getText()),Integer.parseInt(scalePointYField.getText())));
 
         JLabel modeInstruction = new JLabel(" Zmiana Trybu ->");
         JButton modeButton = new JButton("Tryb Tekstowy");
@@ -237,6 +254,26 @@ public class MainFrame extends JFrame {
         toolBar.add(resetButton);
         resetButton.addActionListener(e->ResetFigureSet());
 
+
+    }
+
+    private void SetFigureScale(int figureIndex, int scaleX, int scaleY, int scalePointX, int scalePointY) {
+        scalePointY+=68;
+        float xFactor=(float)scaleX/100;
+        float yFactor=(float)scaleX/100;
+
+        PolygonFigure tempFig=figuresList.get(figureIndex-1);
+        for (Point point:tempFig.pointsList
+        ) {
+            int startX=point.x;
+            int startY=point.y;
+
+            point.x= (int) ( scalePointX+ (startX-scalePointX)*xFactor);
+            point.y= (int) ( scalePointY+(startY-scalePointY)*yFactor);
+        }
+
+        canvasPanel.setFigureSet(figuresList);
+        canvasPanel.PaintFigures();
 
     }
 
@@ -458,7 +495,7 @@ public class MainFrame extends JFrame {
 
             @Override
             public void mouseMoved(MouseEvent e) {
-
+                System.out.println("the Other Way Value: "+theOtherWay);
 
 
                 lastX=currentMouseX;
@@ -502,11 +539,12 @@ public class MainFrame extends JFrame {
                     System.out.println("Różnica Y: "+vectorY);
 
                     int totalDifference=vectorX+vectorY;
-                    totalDifference=totalDifference%5;
+                    totalDifference=totalDifference%15;
 
 
-                    if(differenceX>differenceY)rotateFigure(figuresList.indexOf(selectedFigure)+1, -totalDifference, selectedPoint.x, selectedPoint.y);
-                    else rotateFigure(figuresList.indexOf(selectedFigure)+1, -totalDifference, selectedPoint.x, selectedPoint.y);
+                    if(!theOtherWay)rotateFigure(figuresList.indexOf(selectedFigure)+1, +totalDifference, selectedPoint.x, selectedPoint.y);
+                    if(theOtherWay)rotateFigure(figuresList.indexOf(selectedFigure)+1, -totalDifference, selectedPoint.x, selectedPoint.y);
+
 
                     canvasPanel.setFigureSet(figuresList);
                     canvasPanel.PaintFigures();

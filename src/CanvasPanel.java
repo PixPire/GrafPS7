@@ -8,7 +8,7 @@ public class CanvasPanel extends JPanel {
     private Image image;
     private Graphics2D g2;
     int heightDif = 68;
-
+Point selectedPoint = null;
 
     ArrayList<PolygonFigure> figureList=new ArrayList<>();
 
@@ -73,6 +73,11 @@ public class CanvasPanel extends JPanel {
             }
 
         }
+
+        if(selectedPoint!=null){
+g2.drawRect(selectedPoint.x-2, selectedPoint.y-2, 4,4);
+        }
+
     }
 
 
@@ -81,7 +86,9 @@ public class CanvasPanel extends JPanel {
 
 
 
-
+    public void setSelectedPoint(Point point){
+        selectedPoint=point;
+    }
     public void setFigureSet(ArrayList<PolygonFigure> newList) {
         figureList = newList;
         PaintFigures();

@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6fc2548-099c-44c1-930f-0396a5cfcfb9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="c6fc2548-099c-44c1-930f-0396a5cfcfb9" name="Changes" comment="Zaimplementowano rysowanie, edytowanie (przesunięcie o wektor, obrót względem zadanego punktu) zarówno za pomocą myszy jak tekstowo. Możliwość zapisu i odczytu stanu zapisu z pliku, oraz reset rysunku">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PolygonFigure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PolygonFigure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CanvasPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CanvasPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,11 +62,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1700995268810</updated>
-      <workItem from="1700995269904" duration="22135000" />
+      <workItem from="1700995269904" duration="25855000" />
     </task>
+    <task id="LOCAL-00001" summary="Zaimplementowano rysowanie, edytowanie (przesunięcie o wektor, obrót względem zadanego punktu) zarówno za pomocą myszy jak tekstowo. Możliwość zapisu i odczytu stanu zapisu z pliku, oraz reset rysunku">
+      <created>1701031955458</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701031955458</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Zaimplementowano rysowanie, edytowanie (przesunięcie o wektor, obrót względem zadanego punktu) zarówno za pomocą myszy jak tekstowo. Możliwość zapisu i odczytu stanu zapisu z pliku, oraz reset rysunku" />
+    <option name="LAST_COMMIT_MESSAGE" value="Zaimplementowano rysowanie, edytowanie (przesunięcie o wektor, obrót względem zadanego punktu) zarówno za pomocą myszy jak tekstowo. Możliwość zapisu i odczytu stanu zapisu z pliku, oraz reset rysunku" />
   </component>
 </project>
